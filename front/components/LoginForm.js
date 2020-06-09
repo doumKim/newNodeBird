@@ -1,10 +1,15 @@
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 const ButtonWrapper = styled.div`
 	margin-top: 10px;
+`;
+
+const FormWrapper = styled(Form)`
+	padding: 10px;
 `;
 
 const LoginForm = ({ setIsLoggedIn }) => {
@@ -27,7 +32,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
 	}, [id, password]);
 
 	return (
-		<Form onFinish={onSubmitForm}>
+		<FormWrapper onFinish={onSubmitForm}>
 			<div>
 				<label htmlFor="user-id">아이디</label>
 				<br />
@@ -54,8 +59,12 @@ const LoginForm = ({ setIsLoggedIn }) => {
 					</a>
 				</Link>
 			</ButtonWrapper>
-		</Form>
+		</FormWrapper>
 	);
+};
+
+LoginForm.propTypes = {
+	setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
